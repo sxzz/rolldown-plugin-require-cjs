@@ -1,7 +1,7 @@
 {
   "name": "rolldown-plugin-require-cjs",
   "version": "0.3.1",
-  "packageManager": "pnpm@10.22.0",
+  "packageManager": "pnpm@10.24.0",
   "description": "Transform ESM imports to CJS requires when the imported module is pure CJS.",
   "type": "module",
   "license": "MIT",
@@ -51,18 +51,18 @@
   },
   "devDependencies": {
     "@babel/parser": "^7.28.5",
-    "@sxzz/eslint-config": "^7.3.0",
-    "@sxzz/prettier-config": "^2.2.5",
-    "@sxzz/test-utils": "^0.5.12",
+    "@sxzz/eslint-config": "^7.4.0",
+    "@sxzz/prettier-config": "^2.2.6",
+    "@sxzz/test-utils": "^0.5.13",
     "@types/node": "^24.10.1",
-    "bumpp": "^10.3.1",
+    "bumpp": "^10.3.2",
     "eslint": "^9.39.1",
-    "eslint-plugin-vue": "^10.5.1",
-    "prettier": "^3.6.2",
-    "rolldown": "1.0.0-beta.51",
-    "tsdown": "^0.16.5",
+    "eslint-plugin-vue": "^10.6.2",
+    "prettier": "^3.7.1",
+    "rolldown": "1.0.0-beta.52",
+    "tsdown": "^0.16.8",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.10"
+    "vitest": "^4.0.14"
   },
   "engines": {
     "node": ">=20.19.0"
