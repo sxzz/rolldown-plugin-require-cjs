@@ -40,8 +40,10 @@ export function RequireCJS(userOptions: Options = {}): Plugin {
     },
     outputOptions(options) {
       if (!['es', 'esm', 'module'].includes(options.format as any)) {
-        throw new Error(
-          '`rolldown-plugin-require-cjs` plugin is only necessary for ESM output',
+        this.error(
+          new Error(
+            '`rolldown-plugin-require-cjs` plugin is only necessary for ESM output',
+          ),
         )
       }
     },
