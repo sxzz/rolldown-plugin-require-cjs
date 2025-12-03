@@ -1,32 +1,35 @@
 {
   "name": "rolldown-plugin-require-cjs",
+  "type": "module",
   "version": "0.3.2",
   "packageManager": "pnpm@10.24.0",
   "description": "Transform ESM imports to CJS requires when the imported module is pure CJS.",
-  "type": "module",
+  "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
+  "funding": "https://github.com/sponsors/sxzz",
   "homepage": "https://github.com/sxzz/rolldown-plugin-require-cjs#readme",
-  "bugs": {
-    "url": "https://github.com/sxzz/rolldown-plugin-require-cjs/issues"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sxzz/rolldown-plugin-require-cjs.git"
   },
-  "author": "Kevin Deng <sxzz@sxzz.moe>",
-  "funding": "https://github.com/sponsors/sxzz",
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
+  "bugs": {
+    "url": "https://github.com/sxzz/rolldown-plugin-require-cjs/issues"
+  },
   "exports": {
     ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": ">=20.19.0"
   },
   "scripts": {
     "lint": "eslint --cache .",
@@ -34,7 +37,7 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "vitest",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsgo --noEmit",
     "format": "prettier --cache --write .",
     "release": "bumpp",
     "prepublishOnly": "pnpm run build"
@@ -51,21 +54,19 @@
   },
   "devDependencies": {
     "@babel/parser": "^7.28.5",
-    "@sxzz/eslint-config": "^7.4.0",
+    "@sxzz/eslint-config": "^7.4.1",
     "@sxzz/prettier-config": "^2.2.6",
     "@sxzz/test-utils": "^0.5.13",
     "@types/node": "^24.10.1",
+    "@typescript/native-preview": "7.0.0-dev.20251203.1",
     "bumpp": "^10.3.2",
     "eslint": "^9.39.1",
     "eslint-plugin-vue": "^10.6.2",
-    "prettier": "^3.7.1",
-    "rolldown": "1.0.0-beta.52",
-    "tsdown": "^0.16.8",
+    "prettier": "^3.7.4",
+    "rolldown": "1.0.0-beta.53",
+    "tsdown": "^0.17.0-beta.6",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.14"
-  },
-  "engines": {
-    "node": ">=20.19.0"
+    "vitest": "^4.0.15"
   },
   "prettier": "@sxzz/prettier-config",
   "tsdown": {
