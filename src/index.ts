@@ -3,11 +3,11 @@ import { isBuiltin } from 'node:module'
 import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { init, parse } from 'cjs-module-lexer'
+import { parse as cjsParse, init } from 'cjs-module-lexer'
 import { up } from 'empathic/package'
 import { resolve } from 'import-meta-resolve'
 import { generateTransform, MagicStringAST } from 'magic-string-ast'
-import { parseAst } from 'rolldown/parseAst'
+import { parseSync as oxcParse } from 'rolldown/experimental'
 import { createFilter } from 'unplugin-utils'
 import { resolveOptions, type Options } from './options'
 import type { Plugin } from 'rolldown'
@@ -53,11 +53,11 @@ export function RequireCJS(userOptions: Options = {}): Plugin {
       async handler(code, { fileName }, { file, dir }) {
         if (!filter(fileName)) return
 
-        const { body } = parseAst(code, { lang: undefined }, fileName)
+        const { program } = oxcParse(fileName, code)
         const s = new MagicStringAST(code)
         let usingRequire = false
 
-        for (const stmt of body) {
+        for (const stmt of program.body) {
           if (stmt.type === 'ImportDeclaration') {
             if (stmt.importKind === 'type') continue
 
@@ -208,7 +208,7 @@ export async function isPureCJS(
       // detect by parsing
       const contents = await readFile(importResolved, 'utf8')
       try {
-        parse(contents, importResolved)
+        cjsParse(contents, importResolved)
         return true
       } catch {}
     }
