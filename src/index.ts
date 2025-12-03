@@ -2,10 +2,11 @@ import { readFile } from 'node:fs/promises'
 import { isBuiltin } from 'node:module'
 import path from 'node:path'
 import process from 'node:process'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { init, parse } from 'cjs-module-lexer'
 import { up } from 'empathic/package'
+import { resolve } from 'import-meta-resolve'
 import { generateTransform, MagicStringAST } from 'magic-string-ast'
-import { resolvePathSync } from 'mlly'
 import { parseAst } from 'rolldown/parseAst'
 import { createFilter } from 'unplugin-utils'
 import { resolveOptions, type Options } from './options'
@@ -176,10 +177,17 @@ export async function isPureCJS(
   }
 
   // ignore Node.js built-in modules, as their performance is comparable
-  if (id.startsWith('node:')) return false
+  if (isBuiltin(id)) {
+    return false
+  }
 
   try {
-    const importResolved = resolvePathSync(id, { url: importer })
+    let importResolved = resolve(id, pathToFileURL(importer).href)
+    if (!importResolved.startsWith('file://')) {
+      return false
+    }
+    importResolved = fileURLToPath(importResolved)
+
     const requireResolved = require.resolve(id, { paths: [importer] })
 
     // different resolution, respect to original behavior

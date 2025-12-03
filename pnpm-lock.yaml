@@ -14,12 +14,12 @@ importers:
       empathic:
         specifier: ^2.0.0
         version: 2.0.0
+      import-meta-resolve:
+        specifier: ^4.2.0
+        version: 4.2.0
       magic-string-ast:
         specifier: ^1.0.3
         version: 1.0.3
-      mlly:
-        specifier: ^1.8.0
-        version: 1.8.0
       unplugin-utils:
         specifier: ^0.3.1
         version: 0.3.1
@@ -1587,6 +1587,9 @@ packages:
   import-fresh@3.3.1:
     resolution: {integrity: sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ==}
     engines: {node: '>=6'}
+
+  import-meta-resolve@4.2.0:
+    resolution: {integrity: sha512-Iqv2fzaTQN28s/FwZAoFq0ZSs/7hMAHJVX+w8PZl3cY19Pxk6jFFalxQoIfW2826i/fDLXv8IiEZRIT0lDuWcg==}
 
   import-without-cache@0.2.2:
     resolution: {integrity: sha512-4TTuRrZ0jBULXzac3EoX9ZviOs8Wn9iAbNhJEyLhTpAGF9eNmYSruaMMN/Tec/yqaO7H6yS2kALfQDJ5FxfatA==}
@@ -3817,6 +3820,8 @@ snapshots:
     dependencies:
       parent-module: 1.0.1
       resolve-from: 4.0.0
+
+  import-meta-resolve@4.2.0: {}
 
   import-without-cache@0.2.2: {}
 
