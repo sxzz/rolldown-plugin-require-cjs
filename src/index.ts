@@ -7,7 +7,7 @@ import { parse as cjsParse, init } from 'cjs-module-lexer'
 import { up } from 'empathic/package'
 import { resolve } from 'import-meta-resolve'
 import { generateTransform, MagicStringAST } from 'magic-string-ast'
-import { parseSync as oxcParse } from 'rolldown/experimental'
+import { parseSync } from 'rolldown/utils'
 import { createFilter } from 'unplugin-utils'
 import { resolveOptions, type Options } from './options'
 import type { Plugin } from 'rolldown'
@@ -53,7 +53,7 @@ export function RequireCJS(userOptions: Options = {}): Plugin {
       async handler(code, { fileName }, { file, dir }) {
         if (!filter(fileName)) return
 
-        const { program } = oxcParse(fileName, code)
+        const { program } = parseSync(fileName, code)
         const s = new MagicStringAST(code)
         let usingRequire = false
 

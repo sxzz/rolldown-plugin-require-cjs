@@ -46,6 +46,10 @@ export {  };"
 
 exports[`fixtures > fixtures/type-only.ts 1`] = `
 "// type-only.js
+import { createRequire as __cjs_createRequire } from "node:module";
+const __cjs_require = __cjs_createRequire(import.meta.url);
+__cjs_require("typescript");
+
 //#region tests/fixtures/type-only.ts
 console.log(version);
 

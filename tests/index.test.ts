@@ -17,6 +17,7 @@ describe('fixtures', async () => {
         {
           external: ['typescript', '@babel/parser', 'force', 'auto'],
           platform: 'node',
+          treeshake: true,
         },
       )
       return snapshot
