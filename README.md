@@ -8,7 +8,7 @@ Transform ESM imports to CJS requires when the imported module is pure CJS.
 
 ## Why?
 
-Some packages only provide CJS builds (e.g., [`typescript`](https://npmjs.com/package/typescript), [`@babel/parser`](https://npmjs.com/package/@babel/parser)), and importing them using ESM syntax increases Node's `cjs-module-lexer` overhead. This plugin converts ESM imports to CJS requires for such pure CJS packages, allowing Node to skip the cjs-module-lexer step and improve performance.
+Some packages only provide CJS builds (e.g., [`typescript`](https://npmx.dev/package/typescript), [`@babel/parser`](https://npmx.dev/package/@babel/parser)), and importing them using ESM syntax increases Node's `cjs-module-lexer` overhead. This plugin converts ESM imports to CJS requires for such pure CJS packages, allowing Node to skip the cjs-module-lexer step and improve performance.
 
 If performance is insignificant for your project, please do not use this plugin, as it introduces additional complexity and maintenance overhead.
 
@@ -85,7 +85,7 @@ RequireCJS({
 <!-- Badges -->
 
 [npm-version-src]: https://img.shields.io/npm/v/rolldown-plugin-require-cjs.svg
-[npm-version-href]: https://npmjs.com/package/rolldown-plugin-require-cjs
+[npm-version-href]: https://npmx.dev/package/rolldown-plugin-require-cjs
 [npm-downloads-src]: https://img.shields.io/npm/dm/rolldown-plugin-require-cjs
 [npm-downloads-href]: https://www.npmcharts.com/compare/rolldown-plugin-require-cjs?interval=30
 [unit-test-src]: https://github.com/sxzz/rolldown-plugin-require-cjs/actions/workflows/unit-test.yml/badge.svg
