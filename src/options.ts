@@ -27,13 +27,6 @@ export interface Options {
    * or `undefined` to let the plugin decide automatically.
    */
   shouldTransform?: string[] | TransformFn
-  /**
-   * Whether to transform Node.js built-in modules (e.g., `fs`, `path`)
-   * to `process.getBuiltinModule()` calls, which has the best performance.
-   *
-   * Note: `process.getBuiltinModule` is available since Node.js 20.16.0 and 22.3.0.
-   */
-  builtinNodeModules?: boolean
 }
 
 type Overwrite<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
@@ -54,6 +47,5 @@ export function resolveOptions(options: Options): OptionsResolved {
     exclude: options.exclude || [/node_modules/, /\.d\.[cm]?ts$/],
     order: 'order' in options ? options.order : 'pre',
     shouldTransform: options.shouldTransform,
-    builtinNodeModules: !!options.builtinNodeModules,
   }
 }

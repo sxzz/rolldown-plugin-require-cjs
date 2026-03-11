@@ -5,54 +5,45 @@ exports[`fixtures > fixtures/basic.js 1`] = `
 import { createRequire as __cjs_createRequire } from "node:module";
 const __cjs_require = __cjs_createRequire(import.meta.url);
 const _cjs_ns_default = __cjs_require("typescript");
-const ns = { ..._cjs_ns_default, default: _cjs_ns_default };
+const ns = {
+	..._cjs_ns_default,
+	default: _cjs_ns_default
+};
 const _default = __cjs_require("typescript");
-const {
-  imported: local,
-  named,
-  named: local2,
-  default: _default2,
-  default: _default3
-} = _default;
+const { imported: local, named, named: local2, default: _default2, default: _default3 } = _default;
 __cjs_require("force");
 import "auto";
 import { resolve } from "path";
-
-export { _default, _default2, _default3, local, local2, named, ns, ns as ns2, resolve };"
+export { _default, _default2, _default3, local, local2, named, ns, ns as ns2, resolve };
+"
 `;
 
 exports[`fixtures > fixtures/node-builtins.ts 1`] = `
 "// node-builtins.js
-const {
-  resolve
-} = globalThis.process.getBuiltinModule("path");
-const _cjs_path2_default = globalThis.process.getBuiltinModule("node:path");
-const path2 = { ..._cjs_path2_default, default: _cjs_path2_default };
-const path = globalThis.process.getBuiltinModule("node:path");
-const process = globalThis.process;
-
-export { path, path2, process, resolve };"
+import { resolve } from "path";
+import * as path2 from "node:path";
+import path from "node:path";
+import process from "node:process";
+export { path, path2, process, resolve };
+"
 `;
 
 exports[`fixtures > fixtures/shebang.js 1`] = `
 "// shebang.js
 #!shebang
 import { createRequire as __cjs_createRequire } from "node:module";
-const __cjs_require = __cjs_createRequire(import.meta.url);
-__cjs_require("typescript");
-
-export {  };"
+__cjs_createRequire(import.meta.url)("typescript");
+export {};
+"
 `;
 
 exports[`fixtures > fixtures/type-only.ts 1`] = `
 "// type-only.js
 import { createRequire as __cjs_createRequire } from "node:module";
-const __cjs_require = __cjs_createRequire(import.meta.url);
-__cjs_require("typescript");
-
+__cjs_createRequire(import.meta.url)("typescript");
 //#region tests/fixtures/type-only.ts
 console.log(version);
-
 //#endregion
-export {  };"
+export {};
+"
 `;

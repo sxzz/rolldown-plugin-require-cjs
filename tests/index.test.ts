@@ -11,7 +11,6 @@ describe('fixtures', async () => {
         [
           RequireCJS({
             shouldTransform: (id) => (id === 'force' ? true : undefined),
-            builtinNodeModules: id.includes('node-builtins'),
           }),
         ],
         {

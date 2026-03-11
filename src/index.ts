@@ -19,7 +19,7 @@ let initted = false
 const REQUIRE = `__cjs_require`
 
 export function RequireCJS(userOptions: Options = {}): Plugin {
-  const { include, exclude, order, shouldTransform, builtinNodeModules } =
+  const { include, exclude, order, shouldTransform } =
     resolveOptions(userOptions)
   const filter = createFilter(include, exclude)
   let cwd: string
@@ -63,23 +63,20 @@ export function RequireCJS(userOptions: Options = {}): Plugin {
 
             const source = stmt.source.value
 
-            const isBuiltinModule = builtinNodeModules && isBuiltin(source)
-
             const distFilename =
               file || (dir ? path.join(dir, fileName) : fileName)
             const importer = cwd
               ? path.resolve(cwd, distFilename)
               : distFilename
             const shouldProcess =
-              isBuiltinModule ||
-              ((await shouldTransform?.(source, importer)) ??
-                (await isPureCJS(source, importer)))
+              (await shouldTransform?.(source, importer)) ??
+              (await isPureCJS(source, importer))
 
             if (!shouldProcess) continue
 
             if (stmt.specifiers.length === 0) {
               // import 'cjs-module'
-              if (isBuiltinModule) {
+              if (isBuiltin(source)) {
                 // side-effect free
                 s.removeNode(stmt)
               } else {
@@ -111,16 +108,8 @@ export function RequireCJS(userOptions: Options = {}): Plugin {
               }
             }
 
-            let requireCode: string
-            if (isBuiltinModule) {
-              requireCode =
-                source === 'process' || source === 'node:process'
-                  ? 'globalThis.process'
-                  : `globalThis.process.getBuiltinModule(${JSON.stringify(source)})`
-            } else {
-              requireCode = `__cjs_require(${JSON.stringify(source)})`
-              usingRequire = true
-            }
+            const requireCode = `__cjs_require(${JSON.stringify(source)})`
+            usingRequire = true
 
             const codes: string[] = []
             if (namespaceId) {
@@ -148,9 +137,7 @@ export function RequireCJS(userOptions: Options = {}): Plugin {
         }
 
         if (usingRequire) {
-          const preamble = builtinNodeModules
-            ? `const ${REQUIRE} = globalThis.process.getBuiltinModule("module").createRequire(import.meta.url);\n`
-            : `import { createRequire as __cjs_createRequire } from "node:module";
+          const preamble = `import { createRequire as __cjs_createRequire } from "node:module";
 const ${REQUIRE} = __cjs_createRequire(import.meta.url);\n`
 
           if (code[0] === '#') {

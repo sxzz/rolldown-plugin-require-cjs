@@ -21,7 +21,7 @@ We encourage the JavaScript ecosystem to continue its transition toward ESM. If 
 ## Install
 
 ```bash
-npm i rolldown-plugin-require-cjs
+npm i -D rolldown-plugin-require-cjs
 ```
 
 ## Options
@@ -37,13 +37,6 @@ export interface Options {
    * or `undefined` to let the plugin decide automatically.
    */
   shouldTransform?: string[] | TransformFn
-  /**
-   * Whether to transform Node.js built-in modules (e.g., `fs`, `path`)
-   * to `process.getBuiltinModule()` calls, which has the best performance.
-   *
-   * Note: `process.getBuiltinModule` is available since Node.js 20.16.0 and 22.3.0.
-   */
-  builtinNodeModules?: boolean
 }
 
 /**
