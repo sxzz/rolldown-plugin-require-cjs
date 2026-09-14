@@ -51,7 +51,7 @@
     "unplugin-utils": "^0.3.1"
   },
   "devDependencies": {
-    "@babel/parser": "^7.29.7",
+    "@babel/parser": "^8.0.0",
     "@sxzz/eslint-config": "^8.1.0",
     "@sxzz/prettier-config": "^2.3.1",
     "@sxzz/test-utils": "^0.5.18",
