@@ -1,6 +1,6 @@
 import { rolldownBuild, testFixtures } from '@sxzz/test-utils'
 import { describe } from 'vitest'
-import { RequireCJS } from '../src'
+import { RequireCJS } from '../src/index.ts'
 
 describe('fixtures', async () => {
   await testFixtures(

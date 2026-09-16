@@ -9,10 +9,10 @@ import { resolve } from 'import-meta-resolve'
 import { generateTransform, MagicStringAST } from 'magic-string-ast'
 import { parseSync } from 'rolldown/utils'
 import { createFilter } from 'unplugin-utils'
-import { resolveOptions, type Options } from './options'
+import { resolveOptions, type Options } from './options.ts'
 import type { Plugin } from 'rolldown'
 
-export * from './options'
+export * from './options.ts'
 
 let initted = false
 
@@ -26,10 +26,10 @@ export function RequireCJS(userOptions: Options = {}): Plugin {
   return {
     name: 'rolldown-plugin-require-cjs',
     async buildStart() {
-      if (!initted) {
-        await init()
-        initted = true
-      }
+      if (initted) return
+
+      await init()
+      initted = true
     },
     options(options) {
       if (options.platform !== 'node') {

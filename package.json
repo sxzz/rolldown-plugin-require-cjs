@@ -2,7 +2,6 @@
   "name": "rolldown-plugin-require-cjs",
   "type": "module",
   "version": "0.4.1",
-  "packageManager": "pnpm@11.6.0",
   "description": "Transform ESM imports to CJS requires when the imported module is pure CJS.",
   "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
@@ -27,7 +26,14 @@
     "access": "public"
   },
   "engines": {
-    "node": "^22.18.0 || >=24.0.0"
+    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.4.2",
+      "onFail": "download"
+    }
   },
   "scripts": {
     "lint": "eslint --cache .",
@@ -35,7 +41,7 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "vitest",
-    "typecheck": "tsgo --noEmit",
+    "typecheck": "tsc --noEmit",
     "format": "prettier --cache --write .",
     "release": "bumpp",
     "prepublishOnly": "pnpm run build"
@@ -44,28 +50,27 @@
     "rolldown": "*"
   },
   "dependencies": {
-    "cjs-module-lexer": "^2.2.0",
+    "cjs-module-lexer": "^2.2.1",
     "empathic": "^2.0.1",
     "import-meta-resolve": "^4.2.0",
-    "magic-string-ast": "^2.0.0",
-    "unplugin-utils": "^0.3.1"
+    "magic-string-ast": "^2.1.1",
+    "unplugin-utils": "^0.3.2"
   },
   "devDependencies": {
-    "@babel/parser": "^7.29.7",
-    "@sxzz/eslint-config": "^8.1.0",
-    "@sxzz/prettier-config": "^2.3.1",
-    "@sxzz/test-utils": "^0.5.18",
+    "@sxzz/eslint-config": "^8.6.0",
+    "@sxzz/prettier-config": "^2.3.3",
+    "@sxzz/test-utils": "^0.5.19",
     "@types/node": "^25.9.3",
-    "@typescript/native-preview": "7.0.0-dev.20260612.1",
-    "bumpp": "^11.1.0",
-    "eslint": "^10.4.1",
-    "eslint-plugin-vue": "^10.9.2",
-    "prettier": "^3.8.4",
-    "rolldown": "1.1.1",
-    "tsdown": "^0.22.2",
-    "tsdown-preset-sxzz": "^0.6.0",
+    "@typescript/native-preview": "npm:typescript@^7.0.2",
+    "bumpp": "^12.3.0",
+    "eslint": "^10.10.0",
+    "eslint-plugin-vue": "^10.11.0",
+    "prettier": "^3.9.7",
+    "rolldown": "1.2.9",
+    "tsdown": "^0.23.0",
+    "tsdown-preset-sxzz": "^0.7.1",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.8"
+    "vitest": "^5.0.1"
   },
   "prettier": "@sxzz/prettier-config",
   "tsdown": {
