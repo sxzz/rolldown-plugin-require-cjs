@@ -32,7 +32,7 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.4.2",
+      "version": "12.16.1",
       "onFail": "download"
     }
   },
@@ -67,7 +67,7 @@
     "eslint": "^10.10.0",
     "eslint-plugin-vue": "^10.11.0",
     "prettier": "^3.9.7",
-    "rolldown": "1.2.9",
+    "rolldown": "1.2.16",
     "tsdown": "^0.23.0",
     "tsdown-preset-sxzz": "^0.7.1",
     "typescript": "^6.0.3",
